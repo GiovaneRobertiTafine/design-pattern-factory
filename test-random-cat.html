@@ -133,7 +133,13 @@
 
         function inserirImagem(cardName) {
             document.getElementById(cardName).innerHTML = '<div class="loader-image"></div>';
-            fetch(apiRequest)
+            fetch(apiRequest, {
+      headers : { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+       }
+
+    })
                 .then(function (response) {
                     if (response.ok) {
                         response.json().then(function (json) {
