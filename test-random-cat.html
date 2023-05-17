@@ -139,7 +139,7 @@
                         response.json().then(function (json) {
                             document.getElementById(cardName).innerHTML = '<img src="" id="img-' + cardName + '">';
                             const myImage = document.getElementById('img-' + cardName);
-                            myImage.src = json['file']
+                            myImage.src = json['url']
                         });
                     } else {
                         console.log('Network response was not ok.');
