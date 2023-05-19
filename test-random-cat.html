@@ -92,7 +92,7 @@
         mode: 'cors',
         cache: 'no-cache'
     };
-    const myRequest = new Request('https://cataas.com/cat', myInit);
+    const myRequest = new Request('https://cataas.com/cat?json=true', myInit);
 
     var instancia1 = GerarListaCard('box-card1', myRequest, 'input-number1');
     instancia1.alterarNumCard();
@@ -108,17 +108,17 @@
     }
 
     function GerarListaCard(idBox, apiRequest, valueChangeId) {
-        var instancia = {}
+        var instancia = {};
         instancia.arrayCard = [];
 
         function alterarNumCard() {
-            const valueInput = +document.getElementById(valueChangeId).value
+            const valueInput = +document.getElementById(valueChangeId).value;
             let arrayLength = this.arrayCard.length;
             const box = document.getElementById(idBox);
             if (arrayLength < valueInput) {
                 for (let index = 1; index <= valueInput - arrayLength; index++) {
                     box.innerHTML += '<div class="card" id="card-' + idBox + '-' + this.arrayCard.length + '"></div>';
-                    this.arrayCard.push({ nameCard: 'card-' + this.arrayCard.length })
+                    this.arrayCard.push({ nameCard: 'card-' + this.arrayCard.length });
                     inserirImagem('card-' + idBox + '-' + (this.arrayCard.length - 1));
                 }
             } else if (arrayLength > valueInput) {
@@ -134,18 +134,18 @@
         function inserirImagem(cardName) {
             document.getElementById(cardName).innerHTML = '<div class="loader-image"></div>';
             fetch(apiRequest, {
-      headers : { 
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-       }
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
 
-    })
+            })
                 .then(function (response) {
                     if (response.ok) {
                         response.json().then(function (json) {
                             document.getElementById(cardName).innerHTML = '<img src="" id="img-' + cardName + '">';
                             const myImage = document.getElementById('img-' + cardName);
-                            myImage.src = json['url']
+                            myImage.src = 'https://cataas.com/' + json['url'];
                         });
                     } else {
                         console.log('Network response was not ok.');
