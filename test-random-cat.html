@@ -145,7 +145,7 @@
                         response.json().then(function (json) {
                             document.getElementById(cardName).innerHTML = '<img src="" id="img-' + cardName + '">';
                             const myImage = document.getElementById('img-' + cardName);
-                            myImage.src = 'https://cataas.com/' + json['url'];
+                            myImage.src = 'https://cataas.com/cat/' + json['_id'];
                         });
                     } else {
                         console.log('Network response was not ok.');
